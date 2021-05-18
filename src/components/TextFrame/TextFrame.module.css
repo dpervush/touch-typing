@@ -1,0 +1,14 @@
+.container {
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.body {
+  padding: 30px 45px 40px;
+
+  font-size: 21px;
+  line-height: 36px;
+
+  border-radius: 20px;
+  background-color: #fff;
+}
