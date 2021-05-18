@@ -1,0 +1,22 @@
+.card {
+  min-width: 190px;
+  padding: 20px 30px;
+
+  background-color: #fff;
+  border-radius: 10px;
+}
+.title {
+  margin-bottom: 7px;
+  padding: 5px 0;
+  color: #9ca1a6;
+  font-size: 14px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.result {
+  color: #4dc7e5;
+  text-transform: uppercase;
+}
+.value {
+  font-size: 32px;
+}

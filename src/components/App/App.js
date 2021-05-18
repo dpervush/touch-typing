@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Popup } from "../Popup/Popup";
+import { Statistics } from "../Statistics/Statistics";
 import { TextFrame } from "../TextFrame/TextFrame";
 
 import styles from "./App.module.css";
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className={styles.wrapper}>
       {openPopup && <Popup setOpenPopup={setOpenPopup} />}
+      <Statistics />
       <TextFrame />
     </div>
   );
