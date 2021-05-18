@@ -3,7 +3,9 @@
 # dependencies
 /node_modules
 /.pnp
-/src/components
+/src/components/common
+/src/components/Statistics
+/src/components/TextFrame
 .pnp.js
 
 # testing
