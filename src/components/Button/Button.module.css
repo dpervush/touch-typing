@@ -1,0 +1,22 @@
+.button {
+  display: inline-block;
+  padding: 13px 20px;
+
+  font-size: 16px;
+  color: #0e509e;
+  text-transform: uppercase;
+  text-align: center;
+
+  border-radius: 4px;
+  border: none;
+
+  background-color: #ffde0e;
+  background-image: linear-gradient(to bottom, #ffed2d, #ffde0e);
+
+  transition: all 0.4s;
+  outline: 0;
+  cursor: pointer;
+}
+.button:active {
+  transform: scale(0.9);
+}
