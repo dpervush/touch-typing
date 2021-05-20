@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./StatisticsCard.module.css";
 
-export const StatisticsCard = ({ title, value, measure }) => {
+export const StatisticsCard = React.memo(({ title, value, measure }) => {
   return (
     <div className={styles.card}>
       <div className={styles.title}>{title}</div>
@@ -10,4 +10,4 @@ export const StatisticsCard = ({ title, value, measure }) => {
       </div>
     </div>
   );
-};
+});

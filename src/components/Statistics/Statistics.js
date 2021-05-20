@@ -7,30 +7,33 @@ import styles from "./Statistics.module.css";
 export const Statistics = () => {
   const { text, wrongCount, currentIndex } = useSelector(({ text }) => text);
 
+  const [seconds, setSeconds] = React.useState(1);
+  const [speed, setSpeed] = React.useState(0);
+
+  React.useEffect(() => {
+    const timerId = setTimeout(() => {
+      setSpeed(Math.round((currentIndex / seconds) * 60));
+      setSeconds(seconds + 1);
+    }, 1000);
+
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [seconds]);
+
+  React.useEffect(() => {
+    setSeconds(1);
+    setSpeed(0);
+  }, [text]);
+
   const textLength = text.length > 0 ? text.length : 1;
   const accuracy = (100 - (wrongCount / textLength) * 100).toFixed(1);
-
-  // let seconds = React.useRef();
-  // let speed = React.useRef();
-
-  // seconds.current = 0;
-  // React.useEffect(() => {
-  //   const timerId = setInterval(() => {
-  //     seconds.current++;
-  //     console.log(currentIndex, seconds.current);
-  //     speed.current = (currentIndex / seconds.current) * 60;
-  //   }, 1000);
-
-  //   return () => {
-  //     clearInterval(timerId);
-  //   };
-  // }, [currentIndex]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.inner}>
-          <StatisticsCard title="Скорость" value={0} measure="зн/мин" />
+          <StatisticsCard title="Скорость" value={speed} measure="зн/мин" />
           <StatisticsCard
             title="Точность"
             value={accuracy || 100}
