@@ -20,10 +20,6 @@ export const setWrongLetter = (index) => ({
   payload: index,
 });
 
-export const resetStatistics = () => ({
-  type: RESET,
-});
-
 export const setSpeed = (speed) => ({
   type: SET_SPEED,
   payload: speed,
@@ -32,4 +28,8 @@ export const setSpeed = (speed) => ({
 export const setAccuarcy = (accuracy) => ({
   type: SET_ACCURACY,
   payload: accuracy,
+});
+
+export const resetStatistics = () => ({
+  type: RESET,
 });
