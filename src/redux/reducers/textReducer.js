@@ -5,6 +5,7 @@ const initialState = {
   currentIndex: 0,
   wrongIndex: null,
   wrongCount: 0,
+  finish: false,
 };
 
 export const textReducer = (state = initialState, action) => {
@@ -15,9 +16,11 @@ export const textReducer = (state = initialState, action) => {
         text: action.payload,
       };
     case PRESS_RIGHT_KEY:
+      const nextIndex = ++state.currentIndex;
       return {
         ...state,
-        currentIndex: ++state.currentIndex,
+        currentIndex: nextIndex,
+        finish: nextIndex === state.text.length,
       };
     case SET_WRONG_LETTER:
       return {

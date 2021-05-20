@@ -1,18 +1,23 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { StatisticsCard } from "./StatisticsCard/StatisticsCard";
 import styles from "./Statistics.module.css";
+import { setAccuarcy, setSpeed } from "../../redux/actions";
 
 export const Statistics = () => {
   const { text, wrongCount, currentIndex } = useSelector(({ text }) => text);
+  const { speed, accuracy } = useSelector(({ stat }) => stat);
+
+  const dispatch = useDispatch();
 
   const [seconds, setSeconds] = React.useState(1);
-  const [speed, setSpeed] = React.useState(0);
+
+  const textLength = text.length > 0 ? text.length : 1;
 
   React.useEffect(() => {
     const timerId = setTimeout(() => {
-      setSpeed(Math.round((currentIndex / seconds) * 60));
+      dispatch(setSpeed(Math.round((currentIndex / seconds) * 60)));
       setSeconds(seconds + 1);
     }, 1000);
 
@@ -23,11 +28,12 @@ export const Statistics = () => {
 
   React.useEffect(() => {
     setSeconds(1);
-    setSpeed(0);
+    dispatch(setSpeed(0));
   }, [text]);
 
-  const textLength = text.length > 0 ? text.length : 1;
-  const accuracy = (100 - (wrongCount / textLength) * 100).toFixed(1);
+  React.useEffect(() => {
+    dispatch(setAccuarcy((100 - (wrongCount / textLength) * 100).toFixed(1)));
+  }, [wrongCount, textLength]);
 
   return (
     <div className={styles.wrapper}>

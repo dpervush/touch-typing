@@ -49,7 +49,7 @@ export const TextFrame = () => {
   return (
     <div className={styles.text}>
       <div className={styles.container}>
-        <div className={styles.body}>{renderText() || <Loader />}</div>
+        <div className={styles.body}>{!text ? <Loader /> : renderText()}</div>
       </div>
     </div>
   );

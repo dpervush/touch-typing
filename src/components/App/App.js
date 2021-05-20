@@ -1,17 +1,17 @@
 import React from "react";
 
 import { Popup } from "../Popup/Popup";
-import { Statistics } from "../Statistics/Statistics";
-import { TextFrame } from "../TextFrame/TextFrame";
-import { Button } from "../Button/Button";
 
 import styles from "./App.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchText, resetStatistics } from "../../redux/actions";
+import { Results } from "../Results/Results";
+import { Main } from "../Main/Main";
 
 function App() {
   const [openPopup, setOpenPopup] = React.useState(true);
 
+  const isFinish = useSelector(({ text }) => text.finish);
   const dispatch = useDispatch();
 
   React.useEffect(() => {
@@ -24,21 +24,17 @@ function App() {
     dispatch(fetchText());
   };
 
-  return (
-    <div className={styles.wrapper}>
-      {openPopup ? (
-        <Popup setOpenPopup={setOpenPopup} />
-      ) : (
-        <>
-          <Statistics />
-          <TextFrame />
-        </>
-      )}
-      <div className={styles.restart}>
-        <Button text="Начать заново" handleClick={handleRestartClick} />
-      </div>
-    </div>
-  );
+  const chooseBlockToRender = () => {
+    if (openPopup) {
+      return <Popup setOpenPopup={setOpenPopup} />;
+    } else if (isFinish) {
+      return isFinish && <Results handleClick={handleRestartClick} />;
+    } else {
+      return <Main handleRestartClick={handleRestartClick} />;
+    }
+  };
+
+  return <div className={styles.wrapper}>{chooseBlockToRender()}</div>;
 }
 
 export default App;
