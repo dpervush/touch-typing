@@ -8,7 +8,7 @@ import {
 } from "../types";
 
 export const fetchText = () => (dispatch) => {
-  fetch("https://baconipsum.com/api/?type=meat-and-filler&sentences=1")
+  fetch("https://baconipsum.com/api/?type=meat-and-filler&sentences=7")
     .then((res) => res.json())
     .then((data) => dispatch({ type: FETCH_TEXT, payload: data[0] }));
 };
